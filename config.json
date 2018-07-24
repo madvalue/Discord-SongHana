@@ -1,0 +1,10 @@
+{
+	"prefix": "?",
+	"token": "<your discord application token>",
+	"activity": {
+		"name": "madvalue.nazwa.pl",
+		"url": "https://www.twitch.tv/cuppcaake"
+	},
+	"trn-api-key": "<your thetracknetwork api key>",
+	"steam-api-key": "<your steam api key>"
+}
