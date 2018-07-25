@@ -2,11 +2,16 @@ const Config = require("./Config.js");
 
 let commands = [];
 
-function registerCommand(command, callback) {
+function registerCommand(command, description, callback) {
 	commands[commands.length] = {
 		command: command,
-		callback: callback
+		description: (callback ? description : "Brak opisu"),
+		callback: (callback ? callback : description)
 	};
+}
+
+async function getCommandsList() {
+	return commands;
 }
 
 function searchForCommands(message) {
@@ -27,5 +32,6 @@ function searchForCommands(message) {
 
 module.exports = {
 	registerCommand: registerCommand,
-	searchForCommands: searchForCommands
+	searchForCommands: searchForCommands,
+	getCommandsList: getCommandsList
 };
