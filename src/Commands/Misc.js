@@ -1,5 +1,6 @@
 const Discord = require("./../Discord.js");
 const Config = require("./../Config.js");
+const Commands = require("./../Commands.js");
 
 
 module.exports = {
@@ -33,31 +34,22 @@ function About(message, args) {
 	});
 }
 
-function Help(message, args) {
+async function Help(message, args) {
 	let prefix = Config.getKeyValue("prefix");
+	let commands = await Commands.getCommandsList();
+
+	let commands_fields = "";
+	for (let i = 0; i < commands.length; i++) {
+		commands_fields += `\n**${prefix}${commands[i].command}** | ${commands[i].description}`;
+	}
+
 
 	message.reply("lista komend została wysłana w prywatnej wiadomości :wink:");
 	message.author.send("Hej, podsyłam Ci tę listę komend o które prosiłeś/aś :wink:", {
 		embed: {
 			color: 16738814,
-			fields: [
-				{
-					name: "Podstawowe",
-					value: `**${prefix}help** | Wyświetla spis dostępnych komend\n**${prefix}about** | Wyświetla informacje o bocie\n**${prefix}avatar** | Wyświetla awatar oznaczonego użytkownika`
-				},
-				{
-					name: "Gry i zabawy",
-					value: `**${prefix}moneta** | Wykonuje rzut monetą`
-				},
-				{
-					name: "Statystyki gier",
-					value: `**${prefix}fortnite** | Wyświetla statystyki gracza Fortnite BattleRoyale\n**${prefix}csgo** | Wyświetla statystyki gracza Counter-Strike: Global Offensive`
-				},
-				{
-					name: "Administracyjne",
-					value: `**${prefix}kick** | Wyrzuca członka serwera\n**${prefix}warn** | Wypisywanie ostrzeżenia`
-				}
-			]
+			title: "Spis komend",
+			description: commands_fields
 		}
 	});
 }
