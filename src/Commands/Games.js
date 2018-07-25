@@ -12,6 +12,11 @@ async function FlipCoin(message, args) {
 	else return message.reply("rzucam monetą, ..., wypada orzeł!");
 }
 
+// Papier, kamien, nożyce
+async function RockPaperScissors(message, args) {
+
+}
+
 // Statystyki CS:GO
 async function CounterStrike(message, args) {
 	if (args.length <= 1) return message.reply("", {embed: Syntax.PrepareSyntax(args[0], "csgo")});
