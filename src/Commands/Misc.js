@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 const Discord = require("./../Discord.js");
 const Config = require("./../Config.js");
 const Commands = require("./../Commands.js");
@@ -6,7 +8,10 @@ const Commands = require("./../Commands.js");
 module.exports = {
 	About: About,
 	Help: Help,
-	Avatar: Avatar
+	Avatar: Avatar,
+	Coffee: Coffee,
+	Cat: Cat,
+	Dog: Dog
 };
 
 
@@ -19,6 +24,10 @@ function About(message, args) {
 			thumbnail: {
 				url: Discord.user.avatarURL
 			},
+			timestamp: new Date(),
+			footer: {
+                text: "SongHana by madvalue"
+            },
 			author: {
 		    	name: Discord.user.username,
 		      	icon_url: Discord.user.avatarURL
@@ -78,9 +87,60 @@ function Avatar(message, args) {
 	message.reply("", {
 		embed: {
 			color: 16738814,
-			thumbnail: {
+			timestamp: new Date(),
+			footer: {
+                text: "SongHana by madvalue"
+            },
+			image: {
 				url: user.user.avatarURL
 			}
 		}
 	});
+}
+
+async function Coffee(message, args) {
+	return message.reply(":coffee: oto kawa o którą prosiłeś/aś! :smile:");
+}
+
+// Zdjęcie kota
+async function Cat(message, args) {
+	try {
+		let response = await axios("http://thecatapi.com/api/images/get?format=html");
+		let url = response.data.match(`<img src="(.*)">`)[1];
+		return message.reply("", {
+			embed: {
+				color: 16738814,
+				timestamp: new Date(),
+				footer: {
+                	text: "SongHana by madvalue"
+            	},
+				image: {
+					url: url
+				}
+			}
+		});
+	} catch (error) {
+		return console.log(error);
+	}
+}
+
+// Zdjęcie psa
+async function Dog(message, args) {
+	try {
+		let response = await axios("https://api.thedogapi.com/v1/images/search");
+		return message.reply("", {
+			embed: {
+				color: 16738814,
+				timestamp: new Date(),
+				footer: {
+                	text: "SongHana by madvalue"
+            	},
+				image: {
+					url: response.data[0].url
+				}
+			}
+		});
+	} catch (error) {
+		return console.log(error);
+	}
 }
