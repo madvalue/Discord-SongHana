@@ -29,3 +29,6 @@ Wielozadaniowy bot napisany przy użyciu Node oraz biblioteki Discord.JS
 - [x] Rzut monetą
 - [ ] Gra w papier kamień nożyce
 - [ ] Rosyjska ruletka
+
+# Sugestie
+Jeśli masz jakieś sugestie śmiało pisz do mnie w zakładce Issues lub na Discordzie [#freetalk](https://discord.gg/WxvR874)
