@@ -8,6 +8,9 @@ const Logs = require("./src/Logs.js");
 Commands.registerCommand("about", "Wyświetla informacje na temat bota", require("./src/Commands/Misc.js").About);
 Commands.registerCommand("help", "Wysyła listę komend w wiadomości bezpośredniej", require("./src/Commands/Misc.js").Help);
 Commands.registerCommand("avatar", "Wyświetla awatar oznaczonego użytkownika", require("./src/Commands/Misc.js").Avatar);
+Commands.registerCommand("kawa", "Parzenie kawy", require("./src/Commands/Misc.js").Coffee);
+Commands.registerCommand("kot", "Wysyła losowe zdjęcie kota", require("./src/Commands/Misc.js").Cat);
+Commands.registerCommand("pies", "Wysyła losowe zdjęcie psa", require("./src/Commands/Misc.js").Dog);
 
 // Komendy administracyjne
 Commands.registerCommand("kick", require("./src/Commands/Administration.js").kickMember);
