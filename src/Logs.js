@@ -1,11 +1,11 @@
 const Discord = require("./Discord.js");
 const Config = require("./Config.js");
 
+
 Discord.on("messageDelete", function (message) {
 	let channel = Discord.channels.get(Config.getKeyValue("logs-channel-id"));
 	if (!channel) return console.log("Kanał od logów nie istnieje, nie można dodać wpisu!");
 
-	let data = new Date();
 	channel.send("", {
 		embed: {
 			description: `Wiadomość napisana przez ${message.author} została właśnie usunięta!`,
@@ -14,6 +14,10 @@ Discord.on("messageDelete", function (message) {
 				name: message.author.tag,
 				icon_url: message.author.avatarURL
 			},
+			timestamp: new Date(),
+			footer: {
+                text: "SongHana by madvalue"
+            },
 			fields: [
 				{
 					name: "Treść wiadomości",
@@ -23,11 +27,6 @@ Discord.on("messageDelete", function (message) {
 				{
 					name: "Kanał",
 					value: "" + message.channel,
-					inline: false
-				},
-				{
-					name: "Data",
-					value: data.toLocaleDateString() + " " + data.toLocaleTimeString(),
 					inline: false
 				}
 			]
@@ -39,7 +38,6 @@ Discord.on("messageUpdate", function (oldMessage, newMessage) {
 	let channel = Discord.channels.get(Config.getKeyValue("logs-channel-id"));
 	if (!channel) return console.log("Kanał od logów nie istnieje, nie można dodać wpisu!");
 
-	let data = new Date();
 	if (oldMessage.content && newMessage.content) channel.send("", {
 		embed: {
 			description: `Wiadomość napisana przez ${newMessage.author} została właśnie edytowana!`,
@@ -48,6 +46,10 @@ Discord.on("messageUpdate", function (oldMessage, newMessage) {
 				name: newMessage.author.tag,
 				icon_url: newMessage.author.avatarURL
 			},
+			timestamp: new Date(),
+			footer: {
+                text: "SongHana by madvalue"
+            },
 			fields: [
 				{
 					name: "Poprzednia treść",
@@ -63,11 +65,6 @@ Discord.on("messageUpdate", function (oldMessage, newMessage) {
 					name: "Kanał",
 					value: "" + newMessage.channel,
 					inline: false
-				},
-				{
-					name: "Data",
-					value: data.toLocaleDateString() + " " + data.toLocaleTimeString(),
-					inline: false
 				}
 			]
 		}
@@ -78,7 +75,6 @@ Discord.on("guildMemberUpdate", function (oldMember, newMember) {
 	let channel = Discord.channels.get(Config.getKeyValue("logs-channel-id"));
 	if (!channel) return console.log("Kanał od logów nie istnieje, nie można dodać wpisu!");
 
-	let data = new Date();
 	channel.send("", {
 		embed: {
 			description: `Użytkownik ${newMember} właśnie zmienił swój nickname!`,
@@ -87,6 +83,10 @@ Discord.on("guildMemberUpdate", function (oldMember, newMember) {
 				name: newMember.tag,
 				icon_url: newMember.avatarURL
 			},
+			timestamp: new Date(),
+			footer: {
+                text: "SongHana by madvalue"
+            },
 			fields: [
 				{
 					name: "Nowa nazwa użytkownika",
@@ -96,11 +96,6 @@ Discord.on("guildMemberUpdate", function (oldMember, newMember) {
 				{
 					name: "Poprzednia nazwa użytkownika",
 					value: (oldMember.nickname ? oldMember.nickname : oldMember.user.username),
-					inline: false
-				},
-				{
-					name: "Data",
-					value: data.toLocaleDateString() + " " + data.toLocaleTimeString(),
 					inline: false
 				}
 			]

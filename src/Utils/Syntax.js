@@ -94,6 +94,7 @@ async function PrepareSyntax(command, game) {
                 icon_url: games[game].image
             },
             fields: fields,
+            timestamp: new Date(),
             footer: {
                 text: "SongHana by madvalue"
             }
