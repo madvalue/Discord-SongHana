@@ -6,5 +6,6 @@
 		"url": "https://www.twitch.tv/cuppcaake"
 	},
 	"trn-api-key": "<your thetracknetwork api key>",
-	"steam-api-key": "<your steam api key>"
+	"steam-api-key": "<your steam api key>",
+	"logs-channel-id": "<your logs channel id>"
 }
