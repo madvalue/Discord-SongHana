@@ -10,8 +10,6 @@ module.exports = {
 	Help: Help,
 	Avatar: Avatar,
 	Coffee: Coffee,
-	Cat: Cat,
-	Dog: Dog
 };
 
 
@@ -26,7 +24,7 @@ function About(message, args) {
 			},
 			timestamp: new Date(),
 			footer: {
-                text: "SongHana by madvalue"
+                text: Config.getKeyValue("footer-string")
             },
 			author: {
 		    	name: Discord.user.username,
@@ -58,6 +56,10 @@ async function Help(message, args) {
 		embed: {
 			color: 16738814,
 			title: "Spis komend",
+			footer: {
+				text: Config.getKeyValue("footer-string")
+			},
+			timestamp: new Date(),
 			description: commands_fields
 		}
 	});
@@ -89,7 +91,7 @@ function Avatar(message, args) {
 			color: 16738814,
 			timestamp: new Date(),
 			footer: {
-                text: "SongHana by madvalue"
+                text: Config.getKeyValue("footer-string")
             },
 			image: {
 				url: user.user.avatarURL
@@ -102,45 +104,3 @@ async function Coffee(message, args) {
 	return message.reply(":coffee: oto kawa o którą prosiłeś/aś! :smile:");
 }
 
-// Zdjęcie kota
-async function Cat(message, args) {
-	try {
-		let response = await axios("http://thecatapi.com/api/images/get?format=html");
-		let url = response.data.match(`<img src="(.*)">`)[1];
-		return message.reply("", {
-			embed: {
-				color: 16738814,
-				timestamp: new Date(),
-				footer: {
-                	text: "SongHana by madvalue"
-            	},
-				image: {
-					url: url
-				}
-			}
-		});
-	} catch (error) {
-		return console.log(error);
-	}
-}
-
-// Zdjęcie psa
-async function Dog(message, args) {
-	try {
-		let response = await axios("https://api.thedogapi.com/v1/images/search");
-		return message.reply("", {
-			embed: {
-				color: 16738814,
-				timestamp: new Date(),
-				footer: {
-                	text: "SongHana by madvalue"
-            	},
-				image: {
-					url: response.data[0].url
-				}
-			}
-		});
-	} catch (error) {
-		return console.log(error);
-	}
-}

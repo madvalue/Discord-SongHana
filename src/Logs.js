@@ -16,7 +16,7 @@ Discord.on("messageDelete", function (message) {
 			},
 			timestamp: new Date(),
 			footer: {
-                text: "SongHana by madvalue"
+                text: Config.getKeyValue("footer-string")
             },
 			fields: [
 				{
@@ -48,7 +48,7 @@ Discord.on("messageUpdate", function (oldMessage, newMessage) {
 			},
 			timestamp: new Date(),
 			footer: {
-                text: "SongHana by madvalue"
+                text: Config.getKeyValue("footer-string")
             },
 			fields: [
 				{
@@ -85,7 +85,7 @@ Discord.on("guildMemberUpdate", function (oldMember, newMember) {
 			},
 			timestamp: new Date(),
 			footer: {
-                text: "SongHana by madvalue"
+                text: Config.getKeyValue("footer-string")
             },
 			fields: [
 				{
